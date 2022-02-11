@@ -1,21 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Cart = () => {
+const Cart = ({ name, price, imageUrl, onClickFavorite, onPlus }) => {
+    const [isAdded, setisAdded] = useState(false);
+
+    const onClickPlus = () => {
+        onPlus()
+        setisAdded(!isAdded)
+    }
+
     return (
         <div className="card__item">
             <div className="card__item-top">
-                <img src="/image/card/card-4.png" alt="" />
-                <p>Мужские Кроссовки Nike Blazer Mid Suede</p>
+                <img onClick={onClickFavorite} src={imageUrl} alt="" />
+                <p>{name}</p>
             </div>
             <div className="card__item-bottom">
                 <div className="card__item-bottom--price">
                     <span>Цена:</span>
-                    <b>12 999 руб.</b>
+                    <b>{price} руб.</b>
                 </div>
+                <img onClick={onClickPlus} src={isAdded ? "/image/btn-cheked.svg" : "/image/plus.svg"} alt="" />
 
-                <button>
-                    <img src="/image/plus.svg" alt="" />
-                </button>
+
             </div>
         </div>
     );
