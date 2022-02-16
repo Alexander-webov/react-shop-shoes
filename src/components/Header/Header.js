@@ -1,16 +1,18 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Header = ({ onClickCart }) => {
     return (
         <header className="header">
-            <div className="logo">
-                <img src='/image/logo.svg' alt="" />
-                <div className="logo__text">
-                    <h3>REACT SNEAKERS</h3>
-                    <span>Магазин лучших кроссовок</span>
+            <NavLink to="/" end >
+                <div className="logo">
+                    <img src='/image/logo.svg' alt="" />
+                    <div className="logo__text">
+                        <h3>REACT SNEAKERS</h3>
+                        <span>Магазин лучших кроссовок</span>
+                    </div>
                 </div>
-            </div>
-
+            </NavLink>
             <ul className='headerRight'>
                 <li onClick={onClickCart}>
                     <img src='./image/cart.svg' alt="cart icon" />
@@ -19,7 +21,10 @@ const Header = ({ onClickCart }) => {
                     </span>
                 </li>
                 <li>
-                    <img src='./image/heart.svg' alt="user icon" />
+                    <NavLink to="/favorite" end >
+                        <img src='./image/heart.svg' alt="user icon" />
+                    </NavLink>
+
                 </li>
                 <li>
                     <img src='./image/user.svg' alt="user icon" />

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Drawer = ({ onClickCloseCart, items = [] }) => {
+const Drawer = ({ onClickCloseCart, items = [], onClickDeleteCart }) => {
     return (
         <div className="overlay">
             <div className="drawer">
@@ -14,20 +14,21 @@ const Drawer = ({ onClickCloseCart, items = [] }) => {
 
                 <div className="cartItems">
                     {
-                        items.map(el => {
-                            return (
-                                <div className="cartItem" key={el.imgUrl}>
-                                    <img src={el.imgUrl} alt="" />
-                                    <div className="card__item-bottom--price">
-                                        <p>{el.name}</p>
-                                        <b>{el.price} руб.</b>
+                        items.length < 1 ? <h3> <span>Упсс...</span> Корзина пуста!</h3> :
+                            items.map(el => {
+                                return (
+                                    <div className="cartItem" key={el.imgUrl}>
+                                        <img src={el.imgUrl} alt="" />
+                                        <div className="card__item-bottom--price">
+                                            <p>{el.name}</p>
+                                            <b>{el.price} руб.</b>
+                                        </div>
+                                        <button className='btn-remove' onClick={() => { onClickDeleteCart(el.id) }}>
+                                            <img src="/image/btn-remove.svg" alt="" />
+                                        </button>
                                     </div>
-                                    <button className='btn-remove'>
-                                        <img src="/image/btn-remove.svg" alt="" />
-                                    </button>
-                                </div>
-                            )
-                        })
+                                )
+                            })
                     }
 
 
